@@ -2,24 +2,24 @@
 let randomCharString = "";
 let charSet = [
     {
-        char: "!#$%&'()*+,-./:;<=>?@[]^_`{|}~",
+        char: "!#$%&'()*+,-./;<=>?@[]^_`{|}~",
         name: "Special Characters",
-        use: true
+        use: false
     },
     {
         char: "0123456789",
         name: "Number Characters",
-        use: true
+        use: false
     },
     {
         char: "abcdefghijklmnopqrstuvwxyz",
         name: "Lowercase Letters",
-        use: true
+        use: false
     },
     {
         char: "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
         name: "Uppercase Letters",
-        use: true
+        use: false
     }
 ]
 // user input prompt
@@ -29,10 +29,10 @@ const generate = () => {
     let passwordLength = parseInt(prompt("Choose between 8 and 32 characters."));
     let passwordString = "";
 
-    //password length validation
+    //password length validation.  Included input instructions.
     if (passwordLength > 8 && passwordLength < 32) {
         charSet.forEach(set => {
-            const useChar = (prompt(`You chose ${set.name}is that correct?`)).toLowerCase();
+            const useChar = (prompt(`Type "yes" or or "no".  You chose ${set.name}is that correct?`)).toLowerCase();
             if (useChar === "yes" || useChar === "y") {
                 set.use = true;
             }
@@ -43,7 +43,7 @@ const generate = () => {
         console.log(JSON.stringify(charSet))
     }
     else {
-        alert("Your password does not meet the requirements. Please refresh and try again.");
+        alert("Password length chosen does not meet the requirements. Try again.");
     }
 
     //random password charactor input 
@@ -52,10 +52,10 @@ const generate = () => {
             passwordString = passwordString + randomCharString.charAt(Math.floor(Math.random() * Math.floor((randomCharString.length) - 1)));
         }
 
-        document.getElementById("password").value = passwordString;
+        document.getElementById("password").value = ("Here is your super secret ninja stealthy password:" + passwordString);
     }
     else {
-        alert("You must use at least one kind of character. Please refresh and try again.");
+        alert("You must use at least one character type. Try again.");
     }
 }
 
